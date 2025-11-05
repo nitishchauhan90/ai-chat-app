@@ -11,7 +11,17 @@ connect();
 
 const app = express();
 
-app.use(cors());
+const allowedOrigins = [
+  "https://ai-chat-app-1-xv6l.onrender.com"
+];
+app.use(
+  cors({
+    origin: allowedOrigins,
+    methods: ["GET", "POST"],
+    credentials: true,
+  })
+);
+// app.use(cors());
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
